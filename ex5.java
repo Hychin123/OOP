@@ -1,35 +1,47 @@
-package TP4;
+package TP5;
 
 import java.util.Scanner;
 
 public class ex5 {
-  public int maxNum(int number, int digits) {
-    int max = 0, n;
-    for (int i = 0; i < digits; i++) {
-      n = number % 10;
-      number /= 10;
-      if (n > max) {
-        max = n;
-      }
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter a string to check for palindrome:");
+    String inputString = scanner.nextLine();
+    System.out.println("Choose a method for checking palindrome:");
+    System.out.println("1. Iterating through characters");
+    System.out.println("2. Using StringBuilder");
+    int choice = scanner.nextInt();
+    boolean isPalindrome = false;
+    switch (choice) {
+      case 1:
+        isPalindrome = checkIterating(inputString);
+        break;
+      case 2:
+        isPalindrome = checkBuilder(inputString);
+        break;
+      default:
+        System.out.println("Invalid choice");
+        break;
     }
-    return max;
+    if (isPalindrome) {
+      System.out.println(inputString + " is a palindrome");
+    } else {
+      System.out.println(inputString + " is not a palindrome");
+    }
   }
 
-  public static void main(String[] args) {
-    int number;
-    Scanner var = new Scanner(System.in);
-    ex5 ex5 = new ex5();
-    LuckyNumber luckyNumber;
-
-    System.out.println("Program for find the maximum of 8 digits number.");
-    System.out.print("Please input 8 digits number: ");
-    number = var.nextInt();
-    luckyNumber = new LuckyNumber(number);
-    if (!luckyNumber.isValid(8)) {
-      System.out.println("\nError: Invalid input number, please input only 8 digits number.");
-    } else {
-      System.out.println("\nThe maximum number: " + ex5.maxNum(number, 8));
+  private static boolean checkIterating(String inputString) {
+    int length = inputString.length();
+    for (int i = 0; i < length / 2; i++) {
+      if (inputString.charAt(i) != inputString.charAt(length - i - 1)) {
+        return false;
+      }
     }
-    System.out.println("--------------------------------------------------");
+    return true;
+  }
+
+  private static boolean checkBuilder(String inputString) {
+    StringBuilder stringBuilder = new StringBuilder(inputString);
+    return inputString.equals(stringBuilder.reverse().toString());
   }
 }
