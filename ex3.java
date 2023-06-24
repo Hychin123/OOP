@@ -1,35 +1,39 @@
-package TP3;
+package TP4;
 
 import java.util.Scanner;
 
 public class ex3 {
+  public int resverseNumber(int num, int digits) {
+    int resverseNum = 0;
+    int n = digits;
+    int a;
+    for (int i = 0; i < digits; i++) {
+      a = (int) Math.pow(10.00, (n - 1));
+      resverseNum = resverseNum + (num % 10) * a;
+      num /= 10;
+      n--;
+    }
+    return resverseNum;
+  }
+
   public static void main(String[] args) {
-    Scanner var = new Scanner(System.in);
-    System.out.println("Program for converting time to seconds.");
-    System.out.println("Please input hours :");
-    int a = var.nextInt();
-    System.out.println("Please inpute minutes :");
-    int b = var.nextInt();
-    System.out.println("Please input seconds:");
-    int c = var.nextInt();
+    int number, reverseNumber;
+    ex3 k = new ex3();
+    LuckyNumber luckyNumber;
+    Scanner war = new Scanner(System.in);
+    System.out.println("====== ex3 =======");
+    System.out.println("Program for reversing a 4 digits number");
+    System.out.print("Please input 4 digits number: ");
+    number = war.nextInt();
+    luckyNumber = new LuckyNumber(number);
 
-    System.out.println("Program for converting time to seconds.");
-    System.out.println("Please input end hours :");
-    int x = var.nextInt();
-    System.out.println("Please inpute end minutes :");
-    int y = var.nextInt();
-    System.out.println("Please input end seconds:");
-    int z = var.nextInt();
-
-    int first = a * 3600 + b * 60 + c;
-    int end = x * 3600 + y * 60 + z;
-    int total = end - first;
-    int h = total / 3600;
-    int m = (total % 3600) / 60;
-    int s = total / 60;
-    double cost = (0.05 / 60) * total;
-    System.out.println("Total call duration :" + h + "h" + m + "mn" + s + "s");
-    System.out.println("Total of cost is :" + cost + "$");
+    if (!luckyNumber.isValid(4)) {
+      System.out.println("\nError: Invalid input number, please input only 4 digits number.");
+    } else {
+      reverseNumber = k.resverseNumber(number, 4);
+      System.out.println("\nAfter resverse: " + reverseNumber);
+    }
+    System.out.println("================");
   }
 
 }

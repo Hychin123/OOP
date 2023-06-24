@@ -1,22 +1,21 @@
-package TP3;
+package TP4;
 
 import java.util.Scanner;
 
 public class ex2 {
   public static void main(String[] args) {
     Scanner var = new Scanner(System.in);
-    System.out.println("Program for converting time to seconds.");
-    System.out.println("Please input hours :");
-    int a = var.nextInt();
-    System.out.println("Please inpute minutes :");
-    int b = var.nextInt();
-    System.out.println("Please input seconds:");
-    int c = var.nextInt();
+    System.out.println("Program for testing numer.");
+    System.out.println("Please input 6 digits number:");
+    LuckyNumber luckyNumber = new LuckyNumber(var.nextInt());
 
-    a = a * 3600;
-    b = b * 60;
-    int sum;
-    sum = a + b + c;
-    System.out.println("Number of seconds = " + a + "+" + b + "+" + c + "=" + sum);
+    if (!luckyNumber.isValid(6)) {
+      System.out.println("\nErr0r: Invalid input number, please input only 6 digits number.");
+    } else if (luckyNumber.isLucky()) {
+      System.out.println("\n" + luckyNumber.amount + " is lucky number.");
+    } else {
+      System.out.println("\n" + luckyNumber.amount + " is not lucky number.");
+    }
+    System.out.println("=================================================");
   }
 }

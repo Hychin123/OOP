@@ -1,20 +1,35 @@
-package TP3;
+package TP4;
 
 import java.util.Scanner;
 
 public class ex5 {
+  public int maxNum(int number, int digits) {
+    int max = 0, n;
+    for (int i = 0; i < digits; i++) {
+      n = number % 10;
+      number /= 10;
+      if (n > max) {
+        max = n;
+      }
+    }
+    return max;
+  }
+
   public static void main(String[] args) {
+    int number;
     Scanner var = new Scanner(System.in);
-    System.out.println("Program for calculating duration of travel from ITC to Airport.");
-    System.out.println("Please input traffic jam factor (in percentage [1-100]):");
-    int c = var.nextInt();
-    int d = 7;
-    double p = c * 0.00833333 / 100;
-    int t = (int) (d / p);
-    int s = t % 60;
-    int h = t / 60;
-    int m = h % 60;
-    h = h / 60;
-    System.out.println("Travelling Duration =" + h + ":" + m + ":" + s);
+    ex5 ex5 = new ex5();
+    LuckyNumber luckyNumber;
+
+    System.out.println("Program for find the maximum of 8 digits number.");
+    System.out.print("Please input 8 digits number: ");
+    number = var.nextInt();
+    luckyNumber = new LuckyNumber(number);
+    if (!luckyNumber.isValid(8)) {
+      System.out.println("\nError: Invalid input number, please input only 8 digits number.");
+    } else {
+      System.out.println("\nThe maximum number: " + ex5.maxNum(number, 8));
+    }
+    System.out.println("--------------------------------------------------");
   }
 }
